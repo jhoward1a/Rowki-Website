@@ -8,6 +8,7 @@ import Renderer from './Renderer.js'
 import World from './World/World.js'
 import Resources from './Utils/Resources.js'
 import sources from './sources.js'
+import labels from './World/Labels.js'
 
 import buildunits from './World/Units.js'
 
@@ -15,16 +16,15 @@ import buildunits from './World/Units.js'
 
 let instance = null
 
-//const raycaster = new THREE.Raycaster()
-
-const points = [
-    {
-        position: new THREE.Vector3(1.55, 0.3, - 0.6),
-        element: document.querySelector('.point-0')
-    }
-]
-
 const raycaster = new THREE.Raycaster()
+
+// const points = [
+//     {
+//         position: new THREE.Vector3(1.55, 0.3, - 0.6),
+//         element: document.querySelector('.point-0')
+//     }
+// ]
+
 
 
 export default class Experience
@@ -55,6 +55,7 @@ export default class Experience
         this.renderer = new Renderer()
         this.world = new World()
         this.units = new buildunits()
+        
 
         // Resize event
         this.sizes.on('resize', () =>
@@ -84,8 +85,8 @@ export default class Experience
         // {
         //     const screenPosition = point.position.clone()
         //     screenPosition.project(this.camera.instance)
-        //     const translateX = screenPosition.x * this.sizes.width * 0.5
-        //     const translateY = - screenPosition.y * this.sizes.height * 0.5
+        //     const translateX = screenPosition.x * this.sizes.width * 20
+        //     const translateY = - screenPosition.y * this.sizes.height * 20
         //     point.element.style.transform = `translateX(${translateX}px) translateY(${translateY}px)`
 
         //     raycaster.setFromCamera(screenPosition, this.camera.instance)

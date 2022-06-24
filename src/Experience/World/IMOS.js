@@ -3,13 +3,20 @@ import Experience from '../Experience.js'
 
 export default class IMOS
 {
-    constructor(scale,posx)
+    constructor(name,scale,posx)
     {
         this.experience = new Experience()
         this.scene = this.experience.scene
         this.resources = this.experience.resources
         this.time = this.experience.time
         this.debug = this.experience.debug
+
+        //Labels
+        const labelContainerElem = document.querySelector('#labels');
+        const elem = document.createElement('div');
+        elem.textContent = name;
+        labelContainerElem.appendChild(elem);
+
 
         //Variables
         this.scale = scale
@@ -32,7 +39,6 @@ export default class IMOS
         this.model = this.resource.scene
 
         //Set Scale
-        //this.model.scale.set(50, 50, 50)
         this.model.scale.set(this.scale, this.scale, this.scale)
         
         //Axes Helper
@@ -43,12 +49,8 @@ export default class IMOS
         const box = new THREE.Box3().setFromObject( this.model );
         const center = box.getCenter( new THREE.Vector3() );
         this.model.position.x += ( this.model.position.x - center.x );
-        //this.model.position.y += ( this.model.position.y - center.y );
         this.model.position.y = 7;
         this.model.position.z += ( this.model.position.z - center.z );
-
-        //New X Position
-        //this.model.position.x = this.posx
 
         //Log Size
         // let measure = new THREE.Vector3();
