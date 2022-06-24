@@ -9,7 +9,7 @@ export default class Resources extends EventEmitter
         super()
 
         this.sources = sources
-
+        //THREE.Cache.enabled = true;
         this.items = {}
         this.toLoad = this.sources.length
         this.loaded = 0

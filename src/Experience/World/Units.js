@@ -13,7 +13,7 @@ export default class buildunits
         
           //Scale, PosX
           //this.box = new Box(50,10);
-          const wallE2 = new Box(50,30)
+          //const wallE2 = new Box(50,30)
       }
 
 

@@ -18,14 +18,18 @@ export default class World
         {
             // Setup
             this.floor = new Floor()
-            this.imos = new IMOS(50)
-
-            this.fox = new Fox()
+            var imos = new IMOS(10)
 
             const box1 = new Box('box1',60,80)
-            const box2 = new Box('box2',50,0)
-            console.log(box1); 
-            console.log(box2); 
+
+            // queen is a mesh
+            var box2 = box1.model.clone(true);
+            this.scene.add(box2)
+            box2.position.x = -10; 
+            box2.scale.set(50,50,50)
+            
+            
+            
             this.environment = new Environment()
             
         })

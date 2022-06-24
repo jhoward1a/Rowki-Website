@@ -35,14 +35,6 @@ export default class Box
     setModel()
     {
         this.model = this.resource.scene
-
-        //Generate Cube
-        
-        // const geometry = new THREE.BoxGeometry( 1, 1, 1 );
-        // const material = new THREE.MeshBasicMaterial( {color: 0x00ff00} );
-        // const cube = new THREE.Mesh( geometry, material );
-        // this.model = cube;
-
         this.model.scale.set(this.scale, this.scale, this.scale)
         this.scene.add(this.model)
 
