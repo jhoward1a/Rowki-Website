@@ -22,8 +22,10 @@ export default class World
 
             this.fox = new Fox()
 
-            const box1 = new Box(50,80)
-            const box2 = new Box(50,0)
+            const box1 = new Box('box1',60,80)
+            const box2 = new Box('box2',50,0)
+            console.log(box1); 
+            console.log(box2); 
             this.environment = new Environment()
             
         })

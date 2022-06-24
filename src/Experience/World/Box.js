@@ -3,11 +3,12 @@ import Experience from '../Experience.js'
 
 export default class Box
 {
-    constructor(scale,posx)
+    constructor(name,scale,posx)
     {
         //Variables
         this.scale = scale
         this.posx = posx
+        this.name - name
 
 
         this.experience = new Experience()
@@ -24,7 +25,9 @@ export default class Box
 
         // Resource
         this.resource = this.resources.items.boxModel
-        
+        console.log(this.resource); 
+
+
         
         this.setModel()
     }
@@ -32,6 +35,14 @@ export default class Box
     setModel()
     {
         this.model = this.resource.scene
+
+        //Generate Cube
+        
+        // const geometry = new THREE.BoxGeometry( 1, 1, 1 );
+        // const material = new THREE.MeshBasicMaterial( {color: 0x00ff00} );
+        // const cube = new THREE.Mesh( geometry, material );
+        // this.model = cube;
+
         this.model.scale.set(this.scale, this.scale, this.scale)
         this.scene.add(this.model)
 
