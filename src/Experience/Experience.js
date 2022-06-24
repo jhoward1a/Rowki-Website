@@ -15,7 +15,7 @@ import buildunits from './World/Units.js'
 
 let instance = null
 
-const raycaster = new THREE.Raycaster()
+//const raycaster = new THREE.Raycaster()
 
 const points = [
     {
@@ -23,6 +23,8 @@ const points = [
         element: document.querySelector('.point-0')
     }
 ]
+
+const raycaster = new THREE.Raycaster()
 
 
 export default class Experience
@@ -53,7 +55,7 @@ export default class Experience
         this.renderer = new Renderer()
         this.world = new World()
         this.units = new buildunits()
-        
+
         // Resize event
         this.sizes.on('resize', () =>
         {
@@ -77,27 +79,27 @@ export default class Experience
 
     tick = () =>
     {
-        //Hide Points Bubble if hidden by object
-        for(const point of points)
-        {
-            const screenPosition = point.position.clone()
-            screenPosition.project(this.camera.instance)
-            const translateX = screenPosition.x * this.sizes.width * 0.5
-            const translateY = - screenPosition.y * this.sizes.height * 0.5
-            point.element.style.transform = `translateX(${translateX}px) translateY(${translateY}px)`
+        // //Hide Points Bubble if hidden by object
+        // for(const point of points)
+        // {
+        //     const screenPosition = point.position.clone()
+        //     screenPosition.project(this.camera.instance)
+        //     const translateX = screenPosition.x * this.sizes.width * 0.5
+        //     const translateY = - screenPosition.y * this.sizes.height * 0.5
+        //     point.element.style.transform = `translateX(${translateX}px) translateY(${translateY}px)`
 
-            raycaster.setFromCamera(screenPosition, this.camera.instance)
-            const intersects = raycaster.intersectObjects(this.scene.children, true)
+        //     raycaster.setFromCamera(screenPosition, this.camera.instance)
+        //     const intersects = raycaster.intersectObjects(this.scene.children, true)
 
-            if(intersects.length === 0)
-            {
-                point.element.classList.add('visible')
-            }
-            else
-            {
-                point.element.classList.remove('visible')
-            }
-            }
+        //     if(intersects.length === 0)
+        //     {
+        //         point.element.classList.add('visible')
+        //     }
+        //     else
+        //     {
+        //         point.element.classList.remove('visible')
+        //     }
+        //     }
     }
 
     update()

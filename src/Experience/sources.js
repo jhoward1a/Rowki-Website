@@ -23,6 +23,16 @@ export default [
         path: 'textures/dirt/normal.jpg'
     },
     {
+        name: 'carpetcolour',
+        type: 'texture',
+        path: 'textures/carpet/carpet.jpg'
+    },
+    {
+        name: 'carpetnormal',
+        type: 'texture',
+        path: 'textures/carpet/carpet-normal.jpg'
+    },
+    {
         name: 'foxModel',
         type: 'gltfModel',
         path: 'models/Fox/glTF/Fox.gltf'

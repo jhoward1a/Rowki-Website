@@ -38,6 +38,7 @@ export default class Resources extends EventEmitter
                     (file) =>
                     {
                         this.sourceLoaded(source, file)
+
                     }
                 )
             }

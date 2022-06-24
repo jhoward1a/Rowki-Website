@@ -16,7 +16,7 @@ export default class Box
         this.time = this.experience.time
         this.debug = this.experience.debug
 
-        // Debug
+        //Debug
         if(this.debug.active)
         {
             this.debugFolder = this.debug.ui.addFolder('box')
@@ -25,13 +25,13 @@ export default class Box
         // Resource
         this.resource = this.resources.items.boxModel
         
+        
         this.setModel()
     }
 
     setModel()
     {
         this.model = this.resource.scene
-        console.log(`I am ${this.scale}. Thank you creator`)
         this.model.scale.set(this.scale, this.scale, this.scale)
         this.scene.add(this.model)
 

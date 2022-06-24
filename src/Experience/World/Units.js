@@ -1,4 +1,5 @@
 import Box from './Box.js'
+import IMOS from './IMOS.js'
 
 export default class buildunits
 
@@ -11,11 +12,11 @@ export default class buildunits
         //window.addEventListener('click', () =>
         
           //Scale, PosX
-          this.box = new Box(50,50);
-
-            
-          
-        
+          //this.box = new Box(50,10);
+          const wallE2 = new Box(50,30)
       }
+
+
+     
     }
 }

@@ -3,6 +3,7 @@ import Environment from './Environment.js'
 import Floor from './Floor.js'
 import Fox from './Fox.js'
 import Box from './Box.js'
+import IMOS from './IMOS.js'
 
 export default class World
 {
@@ -17,8 +18,14 @@ export default class World
         {
             // Setup
             this.floor = new Floor()
+            this.imos = new IMOS(50)
+
             this.fox = new Fox()
+
+            const box1 = new Box(50,80)
+            const box2 = new Box(50,0)
             this.environment = new Environment()
+            
         })
         
         // window.addEventListener('click', () =>
