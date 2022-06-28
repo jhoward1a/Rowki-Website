@@ -11,11 +11,11 @@ export default class IMOS
         this.time = this.experience.time
         this.debug = this.experience.debug
 
-        //Labels
-        const labelContainerElem = document.querySelector('#labels');
-        const elem = document.createElement('div');
-        elem.textContent = name;
-        labelContainerElem.appendChild(elem);
+        // //Labels
+        // const labelContainerElem = document.querySelector('#labels');
+        // const elem = document.createElement('div');
+        // elem.textContent = name;
+        // labelContainerElem.appendChild(elem);
 
 
         //Variables

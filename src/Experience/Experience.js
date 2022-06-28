@@ -9,7 +9,7 @@ import World from './World/World.js'
 import Resources from './Utils/Resources.js'
 import sources from './sources.js'
 import labels from './World/Labels.js'
-
+import IMOS from './World/IMOS'
 import buildunits from './World/Units.js'
 
 
@@ -18,12 +18,12 @@ let instance = null
 
 const raycaster = new THREE.Raycaster()
 
-// const points = [
-//     {
-//         position: new THREE.Vector3(1.55, 0.3, - 0.6),
-//         element: document.querySelector('.point-0')
-//     }
-// ]
+const points = [
+    {
+        position: new THREE.Vector3(0, 0.3, - 0.6),
+        element: document.querySelector('.point-0')
+    }
+]
 
 
 
@@ -55,6 +55,12 @@ export default class Experience
         this.renderer = new Renderer()
         this.world = new World()
         this.units = new buildunits()
+
+        var clicked = function()
+        {
+            alert(this.id+" "+this.innerHTML);
+        }
+        document.getElementById('OP600').onclick = clicked;
         
 
         // Resize event
@@ -80,27 +86,7 @@ export default class Experience
 
     tick = () =>
     {
-        // //Hide Points Bubble if hidden by object
-        // for(const point of points)
-        // {
-        //     const screenPosition = point.position.clone()
-        //     screenPosition.project(this.camera.instance)
-        //     const translateX = screenPosition.x * this.sizes.width * 20
-        //     const translateY = - screenPosition.y * this.sizes.height * 20
-        //     point.element.style.transform = `translateX(${translateX}px) translateY(${translateY}px)`
-
-        //     raycaster.setFromCamera(screenPosition, this.camera.instance)
-        //     const intersects = raycaster.intersectObjects(this.scene.children, true)
-
-        //     if(intersects.length === 0)
-        //     {
-        //         point.element.classList.add('visible')
-        //     }
-        //     else
-        //     {
-        //         point.element.classList.remove('visible')
-        //     }
-        //     }
+        
     }
 
     update()

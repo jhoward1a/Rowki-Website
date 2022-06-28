@@ -35,23 +35,23 @@ export default class World
             
             console.log(this.allobj)
 
-            // //Labels
-            const tempV = new THREE.Vector3();
+            // // //Labels
+            // const tempV = new THREE.Vector3();
         
-             // get the position of the center of the cube
-            this.allobj[0].model.updateWorldMatrix(true, false);
-            this.allobj[0].model.getWorldPosition(tempV);
-            // get the normalized screen coordinate of that position
-            // x and y will be in the -1 to +1 range with x = -1 being
-            // on the left and y = -1 being on the bottom
-            tempV.project(this.experience.camera.instance);
-            // convert the normalized position to CSS coordinates
-            const x = (tempV.x *  .5 + .5) * this.experience.canvas.clientWidth;
-            const y = (tempV.y * -.5 + .5) * this.experience.canvas.clientHeight;
+            //  // get the position of the center of the cube
+            // this.allobj[0].model.updateWorldMatrix(true, false);
+            // this.allobj[0].model.getWorldPosition(tempV);
+            // // get the normalized screen coordinate of that position
+            // // x and y will be in the -1 to +1 range with x = -1 being
+            // // on the left and y = -1 being on the bottom
+            // tempV.project(this.experience.camera.instance);
+            // // convert the normalized position to CSS coordinates
+            // const x = (tempV.x *  .5 + .5) * this.experience.canvas.clientWidth;
+            // const y = (tempV.y * -.5 + .5) * this.experience.canvas.clientHeight;
             
-            // move the elem to that position
-            const elem = document.querySelector('#labels');
-            elem.style.transform = `translate(-50%, -50%) translate(${x}px,${y}px)`;
+            // // move the elem to that position
+            // const elem = document.querySelector('#labels');
+            // elem.style.transform = `translate(-50%, -50%) translate(${x}px,${y}px)`;
             
 
             //Box Highlight
@@ -76,6 +76,18 @@ export default class World
         //   alert("Test");
         //   this.box = new Box()
         // })
+
+        // window.addEventListener("click", myFunction);
+        // function myFunction() {
+        // document.getElementById("labels");
+        // alert(document.getElementById("buttn").value);
+        // }
+
+        const name = document.querySelector(".name");
+        function changeColor() {
+            name.style.color = "blue";
+            alert("Test");
+        }
         
     }
 }
