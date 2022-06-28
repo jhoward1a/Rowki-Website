@@ -2,18 +2,20 @@ import Experience from '../Experience.js'
 import Camera from '../Camera.js'
 import Environment from './Environment.js'
 import Floor from './Floor.js'
-import Fox from './Fox.js'
-import Box from './Box.js'
 import IMOS from './IMOS.js'
 import * as THREE from 'three'
 
+
 export default class World
 {
+
     constructor()
     {
         this.experience = new Experience()
         this.scene = this.experience.scene
         this.resources = this.experience.resources
+        this.allobj = [
+        ];
 
         // Wait for resources
         this.resources.on('ready', () =>
@@ -21,19 +23,27 @@ export default class World
             // Setup
             this.floor = new Floor()
 
-            this.allobj = [
-              ];
-            //Create Model (Could be loaded without add?)
+              
+            //Create Model (Loaded without Add - For Each?)
             const imos1 = new IMOS('imos',50,0)
-            this.allobj.push(imos1);
             
             //Clone & Add to scene
             var imos2 = imos1.model.clone(true);
             this.scene.add(imos2)
             imos2.position.x = imos2.position.x + 30; 
             this.allobj.push(imos2);
+
+            //Clone & Add to scene
+            var imos3 = imos1.model.clone(true);
+            this.scene.add(imos3)
+            imos3.position.x = imos3.position.x; 
+            this.allobj.push(imos3);
             
             console.log(this.allobj)
+
+            
+            //Track buttons
+            // document.getElementById('OP600').onclick = function() {clicked(imos)};
 
             // // //Labels
             // const tempV = new THREE.Vector3();
@@ -55,21 +65,25 @@ export default class World
             
 
             //Box Highlight
-            const box = new THREE.BoxHelper( imos2, 0xffff00 );
-            this.scene.add( box );
-
-
-
-            //Cloning Sample
-            // const box1 = new Box('box1',60,80)
-            // var box2 = box1.model.clone(true);
-            // this.scene.add(box2)
-            // box2.position.x = -10; 
-            // box2.scale.set(50,50,50)
+            // const box = new THREE.BoxHelper( imos2, 0xffff00 );
+            // this.scene.add( box );
             
             this.environment = new Environment()
             
         })
+
+        //When button clicked
+        function clicked (imos)
+        {
+            //alert("Test");
+            //Get ID
+            //Clone & Add to scene (this.id.model.clone(true);)
+            var model1  = imos.model.clone(true);
+            this.scene.add(model1)
+            model1.position.x = model1.position.x - 30;    
+        }
+
+    
         
         // window.addEventListener('click', () =>
         // {
@@ -82,12 +96,6 @@ export default class World
         // document.getElementById("labels");
         // alert(document.getElementById("buttn").value);
         // }
-
-        const name = document.querySelector(".name");
-        function changeColor() {
-            name.style.color = "blue";
-            alert("Test");
-        }
         
     }
 }

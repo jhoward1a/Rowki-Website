@@ -56,11 +56,6 @@ export default class Experience
         this.world = new World()
         this.units = new buildunits()
 
-        var clicked = function()
-        {
-            alert(this.id+" "+this.innerHTML);
-        }
-        document.getElementById('OP600').onclick = clicked;
         
 
         // Resize event

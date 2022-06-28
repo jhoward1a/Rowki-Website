@@ -11,12 +11,6 @@ export default class IMOS
         this.time = this.experience.time
         this.debug = this.experience.debug
 
-        // //Labels
-        // const labelContainerElem = document.querySelector('#labels');
-        // const elem = document.createElement('div');
-        // elem.textContent = name;
-        // labelContainerElem.appendChild(elem);
-
 
         //Variables
         this.scale = scale
@@ -57,8 +51,8 @@ export default class IMOS
         // let box2 = box.getSize(measure);
         // console.log( measure );
         
-
-        this.scene.add(this.model)
+        //Add to scene
+        //this.scene.add(this.model)
 
 
         this.model.traverse((child) =>
