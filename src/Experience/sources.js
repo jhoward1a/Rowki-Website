@@ -46,6 +46,11 @@ export default [
         name: 'openUnit',
         type: 'gltfModel',
         path: 'models/OpenUnit/OpenUnit.gltf'
+    },
+    {
+        name: 'WDDH90224',
+        type: 'gltfModel',
+        path: 'models/WDDH90224/WDDH90224.gltf'
     }
     
 ]

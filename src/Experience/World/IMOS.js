@@ -15,6 +15,7 @@ export default class IMOS
         //Variables
         this.scale = scale
         this.posx = posx
+        this.name = name
 
         // Debug
         if(this.debug.active)

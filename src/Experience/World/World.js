@@ -26,7 +26,8 @@ export default class World
 
               
             //Create Model (Loaded without Add - For Each?)
-            const imos1 = new IMOS('imos',50,0)
+            const imos1 = new IMOS('openUnit',50,0)
+            //const WDDH90224 = new IMOS('imos',50,0)
             
             //Clone & Add to scene
             var imos2 = imos1.model.clone(true);
@@ -40,7 +41,8 @@ export default class World
 
             
             //Track buttons
-            document.getElementById('OP600').onclick = function() {clicked(imos1,scene1,allobj)};
+            document.getElementById('OP600').onclick = function() {clicked(this,imos1,scene1,allobj)};
+            document.getElementById('WDDH90224').onclick = function() {clicked(this,imos1,scene1,allobj)};
 
             // // //Labels
             // const tempV = new THREE.Vector3();
@@ -70,21 +72,22 @@ export default class World
         })
 
         //When button clicked
-        function clicked (imos,scene,allobj)
+        function clicked (obj,imos,scene,allobj)
         {
             //Get ID
-
-            //Clone & Add to scene (this.id.model.clone(true);)
+            var id = obj.id;
+            console.log(id)
+            //Clone & Add to scene
             var model1  = imos.model.clone(true);
             scene.add(model1)
-            //Get last object position
+            //Get last object in array
             let lastElement = allobj[allobj.length - 1];
-
+            //Get new model size info
             const box = new THREE.Box3().setFromObject( model1 );
             const size = box.getSize( new THREE.Vector3() );
-            console.log(size.x)
-
+            //Position model to last object + new model width
             model1.position.x = lastElement.position.x + size.x;    
+            //Add to array
             allobj.push(model1);
         }
 
