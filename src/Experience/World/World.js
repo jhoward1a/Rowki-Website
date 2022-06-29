@@ -30,8 +30,7 @@ export default class World
             
             //Clone & Add to scene
             var imos2 = imos1.model.clone(true);
-            this.scene.add(imos2)
-            imos2.position.x = imos2.position.x + 30; 
+            this.scene.add(imos2) 
             this.allobj.push(imos2);
             
             //console.log(this.allobj)
@@ -77,27 +76,18 @@ export default class World
 
             //Clone & Add to scene (this.id.model.clone(true);)
             var model1  = imos.model.clone(true);
-            console.log(model1)
             scene.add(model1)
             //Get last object position
             let lastElement = allobj[allobj.length - 1];
-            model1.position.x = lastElement.position.x - 30;    
+
+            const box = new THREE.Box3().setFromObject( model1 );
+            const size = box.getSize( new THREE.Vector3() );
+            console.log(size.x)
+
+            model1.position.x = lastElement.position.x + size.x;    
             allobj.push(model1);
         }
 
     
-        
-        // window.addEventListener('click', () =>
-        // {
-        //   alert("Test");
-        //   this.box = new Box()
-        // })
-
-        // window.addEventListener("click", myFunction);
-        // function myFunction() {
-        // document.getElementById("labels");
-        // alert(document.getElementById("buttn").value);
-        // }
-        
     }
 }
