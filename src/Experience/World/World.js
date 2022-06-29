@@ -13,6 +13,7 @@ export default class World
     {
         this.experience = new Experience()
         this.scene = this.experience.scene
+
         this.resources = this.experience.resources
         this.allobj = [
         ];
@@ -41,9 +42,11 @@ export default class World
             
             console.log(this.allobj)
 
+            const scene1 = this.scene
+
             
             //Track buttons
-            // document.getElementById('OP600').onclick = function() {clicked(imos)};
+            document.getElementById('OP600').onclick = function() {clicked(imos1,scene1)};
 
             // // //Labels
             // const tempV = new THREE.Vector3();
@@ -73,13 +76,14 @@ export default class World
         })
 
         //When button clicked
-        function clicked (imos)
+        function clicked (imos,scene)
         {
             //alert("Test");
             //Get ID
             //Clone & Add to scene (this.id.model.clone(true);)
             var model1  = imos.model.clone(true);
-            this.scene.add(model1)
+            console.log(model1)
+            scene.add(model1)
             model1.position.x = model1.position.x - 30;    
         }
 
