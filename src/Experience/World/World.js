@@ -33,20 +33,15 @@ export default class World
             this.scene.add(imos2)
             imos2.position.x = imos2.position.x + 30; 
             this.allobj.push(imos2);
-
-            //Clone & Add to scene
-            var imos3 = imos1.model.clone(true);
-            this.scene.add(imos3)
-            imos3.position.x = imos3.position.x; 
-            this.allobj.push(imos3);
             
-            console.log(this.allobj)
+            //console.log(this.allobj)
 
             const scene1 = this.scene
+            const allobj = this.allobj
 
             
             //Track buttons
-            document.getElementById('OP600').onclick = function() {clicked(imos1,scene1)};
+            document.getElementById('OP600').onclick = function() {clicked(imos1,scene1,allobj)};
 
             // // //Labels
             // const tempV = new THREE.Vector3();
@@ -76,15 +71,18 @@ export default class World
         })
 
         //When button clicked
-        function clicked (imos,scene)
+        function clicked (imos,scene,allobj)
         {
-            //alert("Test");
             //Get ID
+
             //Clone & Add to scene (this.id.model.clone(true);)
             var model1  = imos.model.clone(true);
             console.log(model1)
             scene.add(model1)
-            model1.position.x = model1.position.x - 30;    
+            //Get last object position
+            let lastElement = allobj[allobj.length - 1];
+            model1.position.x = lastElement.position.x - 30;    
+            allobj.push(model1);
         }
 
     
