@@ -3,6 +3,7 @@ import Camera from '../Camera.js'
 import Environment from './Environment.js'
 import Floor from './Floor.js'
 import IMOS from './IMOS.js'
+import WDDH90224 from './WDDH90224.js'
 import * as THREE from 'three'
 
 
@@ -27,7 +28,7 @@ export default class World
               
             //Create Model (Loaded without Add - For Each?)
             const imos1 = new IMOS('openUnit',50,0)
-            //const WDDH90224 = new IMOS('imos',50,0)
+            const unit90 = new WDDH90224('WDDH90224',50,0)
             
             //Clone & Add to scene
             var imos2 = imos1.model.clone(true);
@@ -42,7 +43,7 @@ export default class World
             
             //Track buttons
             document.getElementById('OP600').onclick = function() {clicked(this,imos1,scene1,allobj)};
-            document.getElementById('WDDH90224').onclick = function() {clicked(this,imos1,scene1,allobj)};
+            document.getElementById('WDDH90224').onclick = function() {clicked(this,unit90,scene1,allobj)};
 
             // // //Labels
             // const tempV = new THREE.Vector3();
@@ -80,13 +81,23 @@ export default class World
             //Clone & Add to scene
             var model1  = imos.model.clone(true);
             scene.add(model1)
-            //Get last object in array
-            let lastElement = allobj[allobj.length - 1];
+            //Get last object in array (Size & Position)
+            const lastElement = allobj[0];
+            const lastbox = new THREE.Box3().setFromObject( lastElement );
+            const lastsize = lastbox.getSize( new THREE.Vector3() );
+            const lastcenter = lastbox.getCenter( new THREE.Vector3() );
+            console.log("Last box is: "+ lastsize.x)
+            console.log(lastcenter)
+
             //Get new model size info
             const box = new THREE.Box3().setFromObject( model1 );
-            const size = box.getSize( new THREE.Vector3() );
+            const size = box.getSize( new THREE.Vector3().setFromObject( lastElement ) );
+            console.log("New is: " + size.x)
+            
             //Position model to last object + new model width
-            model1.position.x = lastElement.position.x + size.x;    
+            const V3 = new THREE.Vector3(0,0,0)            // Create variable in zero position
+            model1.position.copy(V3) 
+            //model1.position.x = lastElement.position.x;    
             //Add to array
             allobj.push(model1);
         }

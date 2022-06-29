@@ -1,7 +1,7 @@
 import * as THREE from 'three'
 import Experience from '../Experience.js'
 
-export default class IMOS
+export default class WDDH90224
 {
     constructor(name,scale,posx)
     {
@@ -23,13 +23,9 @@ export default class IMOS
             this.debugFolder = this.debug.ui.addFolder('fox')
         }
 
-        if (this.name = "WDDH90224") {
-            this.resource = this.resources.items.WDDH90224
-        }
 
-        if (this.name = "openUnit") {
-            this.resource = this.resources.items.openUnit
-        };
+        this.resource = this.resources.items.WDDH90224
+        
         // Resource
         this.setModel()
     }
