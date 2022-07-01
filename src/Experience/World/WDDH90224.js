@@ -37,9 +37,6 @@ export default class WDDH90224
         //Set Scale
         this.model.scale.set(this.scale, this.scale, this.scale)
         
-        //Axes Helper
-        const axesHelper = new THREE.AxesHelper(200)
-        this.scene.add(axesHelper)
 
         //Center Object
         const box = new THREE.Box3().setFromObject( this.model );
