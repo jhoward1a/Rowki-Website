@@ -51,6 +51,11 @@ export default [
         name: 'WDDH90224',
         type: 'gltfModel',
         path: 'models/WDDH90224/WDDH90224.gltf'
+    },
+    {
+        name: 'Door90Slab',
+        type: 'gltfModel',
+        path: 'models/90DSLAB/90DSLAB.gltf'
     }
     
 ]
