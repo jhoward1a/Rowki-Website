@@ -94,7 +94,6 @@ export default class World
             
             if (toggle.checked == true) {
             //To Left
-            console.log("Left")
             model1.position.x = lastElement.position.x 
             model1.position.x = model1.position.x - lastsize.x - diff
             allobj.push(model1)
@@ -103,17 +102,14 @@ export default class World
 
             else if (toggle.checked == false) {
             //To Right
-            console.log("Right")
             model1.position.x = firstElement.position.x 
             model1.position.x = model1.position.x + firstsize.x
             allobj.unshift(model1)
             }
-            
 
-            
+            //Extend Plinth & Cornice
 
-           
-            
+            //Add chosen door 
         
     }
 
