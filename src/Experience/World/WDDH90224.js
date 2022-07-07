@@ -37,13 +37,8 @@ export default class WDDH90224
         //Set Scale
         this.model.scale.set(this.scale, this.scale, this.scale)
         
-
-        //Center Object
-        const box = new THREE.Box3().setFromObject( this.model );
-        const center = box.getCenter( new THREE.Vector3() );
-        this.model.position.x += ( this.model.position.x - center.x );
         this.model.position.y = 7;
-        this.model.position.z += ( this.model.position.z - center.z );
+        
 
         //Log Size
         // let measure = new THREE.Vector3();

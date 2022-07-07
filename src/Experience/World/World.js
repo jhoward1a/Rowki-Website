@@ -5,22 +5,19 @@ import Floor from './Floor.js'
 import IMOS from './IMOS.js'
 import WDDH90224 from './WDDH90224.js'
 import * as THREE from 'three'
+import buildunits from './Units.js'
+
 
 
 export default class World
 {
-
     constructor()
     {
         this.experience = new Experience()
         this.scene = this.experience.scene
-
         this.resources = this.experience.resources
         this.allobj = [
         ];
-        this.posright = [
-        ];
-        this.posleft = null
 
         // Wait for resources
         this.resources.on('ready', () =>
@@ -32,6 +29,8 @@ export default class World
             const axesHelper = new THREE.AxesHelper(200)
             this.scene.add(axesHelper)
             
+            
+            //let posleft = 0
 
               
             //Create Model (Loaded without Add - For Each?)
@@ -44,20 +43,22 @@ export default class World
             var bbox1 = new THREE.Box3().setFromObject(imos2);
             const bboxsize1 = bbox1.getSize( new THREE.Vector3() );
 
-            this.posright.push(this.posright + (bboxsize1.x/2));
+            //var update = (posright  + (bboxsize1.x/2));
+
             this.allobj.push(imos2);
+
             
             //console.log(this.allobj)
 
             const scene1 = this.scene
             const allobj = this.allobj
-            const posright = this.posright
-            const posleft = this.posleft
+           
+
 
             
             //Track buttons
-            document.getElementById('OP600').onclick = function() {clicked(this,imos1,scene1,allobj,posright,posleft)};
-            document.getElementById('WDDH90224').onclick = function() {clicked(this,unit90,scene1,allobj,posright,posleft)};
+            document.getElementById('OP600').onclick = function() {clicked(this,imos1,scene1,allobj)};
+            document.getElementById('WDDH90224').onclick = function() {clicked(this,unit90,scene1,allobj)};
 
             // // //Labels
             // const tempV = new THREE.Vector3();
@@ -77,62 +78,52 @@ export default class World
             // const elem = document.querySelector('#labels');
             // elem.style.transform = `translate(-50%, -50%) translate(${x}px,${y}px)`;
             
-
-            
             
             this.environment = new Environment()
             
-        })
+        });
 
-        //When button clicked
-        function clicked (obj,imos,scene,allobj,posright,posleft)
-        {    
-;
-   
-            const reducer = (accumulator, curr) => accumulator + curr;
-             total = (posright.reduce(reducer));
+
+
+        function clicked(obj, imos, scene, allobj){
 
             //Get ID
-            var id = obj.id;
+            var id = obj.id
             console.log(id)
             //Clone & Add to scene
-            var model1  = imos.model.clone(true);
+            var model1 = imos.model.clone(true)
             scene.add(model1)
             //Get last object in array (Size & Position)
-            const lastElement = allobj[allobj.length - 1];
-            const lastbox = new THREE.Box3().setFromObject( lastElement );
-            const lastsize = lastbox.getSize( new THREE.Vector3() );
-            const lastcenter = lastbox.getCenter( new THREE.Vector3() );
-
-            var target = new THREE.Vector3(); // create once an reuse it
-            lastElement.getWorldPosition( target );
+            const lastElement = allobj[allobj.length - 1]
+            const lastbox = new THREE.Box3().setFromObject(lastElement)
+            const lastsize = lastbox.getSize(new THREE.Vector3())
+            const lastcenter = lastbox.getCenter(new THREE.Vector3())
+    
+            var target = new THREE.Vector3() // create once an reuse it
+            lastElement.getWorldPosition(target)
             console.log(target)
+    
+    
+    
+            // //Current model size
+            // var bbox = new THREE.Box3().setFromObject(model1)
+            // const bboxsize = bbox.getSize(new THREE.Vector3())
+            // var diff = bboxsize.x - lastsize.x
+            // var half = bboxsize.x / 2
+            // var move = half + diff
+    
+    
+            model1.position.x = lastElement.position.x + lastsize.x
+
+            allobj.push(model1)
             
-            
-
-            //Current model size
-            var bbox = new THREE.Box3().setFromObject(model1);
-            const bboxsize = bbox.getSize( new THREE.Vector3() );
-
-            var diff = bboxsize.x - lastsize.x
-            var half = bboxsize.x/2
-            var move = half + diff
-            console.log("posright 1 = " + total)
-           
-
-            model1.position.x = model1.position.x + 14 + half;    
-            allobj.push(model1);
+        
+    }
 
 
-          
 
-            //Box Highlight
-            // const box = new THREE.BoxHelper( model1, 0xffff00 );
-            // scene.add( box );
-            //Add to array
-
-        }
+    }
 
     
-    }
+    
 }

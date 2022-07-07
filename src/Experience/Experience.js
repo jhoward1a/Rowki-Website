@@ -30,6 +30,7 @@ const points = [
     // }
 ]
 
+var posright;
 
 
 export default class Experience
@@ -59,8 +60,10 @@ export default class Experience
         this.camera = new Camera()
         this.renderer = new Renderer()
         this.world = new World()
-        this.units = new buildunits()
 
+
+
+        
         
 
         // Resize event

@@ -1,4 +1,5 @@
 import * as THREE from 'three'
+import { Vector4 } from 'three'
 import Experience from '../Experience.js'
 
 export default class IMOS
@@ -42,11 +43,20 @@ export default class IMOS
         this.model.scale.set(this.scale, this.scale, this.scale)
         
         //Center Object
-        const box = new THREE.Box3().setFromObject( this.model );
-        const center = box.getCenter( new THREE.Vector3() );
-        this.model.position.x += ( this.model.position.x - center.x );
+        // const box = new THREE.Box3().setFromObject( this.model  );
+        // const center = box.getCenter( new THREE.Vector3() );
+        // this.model.position.x += ( this.model.position.x - center.x );
         this.model.position.y = 7;
-        this.model.position.z += ( this.model.position.z - center.z );
+        // this.model.position.z += ( this.model.position.z - center.z );
+
+        this.scene.updateMatrixWorld()
+        console.log(this.scene.children)
+
+        var target = new THREE.Vector3();
+        console.log(this.model.getWorldPosition(target))
+
+        var target2 = new THREE.Vector3();
+
 
         //Log Size
         // let measure = new THREE.Vector3();
