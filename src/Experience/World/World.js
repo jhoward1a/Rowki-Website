@@ -32,15 +32,21 @@ export default class World
             const axesHelper = new THREE.AxesHelper(200)
             this.scene.add(axesHelper)
             
-              
-            //Create Model (Loaded without Add - For Each?)
-         
+            //Get Sources
+            const sources = this.experience.resources.sources
 
+            //Create Model (Loaded without Add - For Each?)
             const unit90 = new buildunits('WDDH90224',50);
             const imos1 = new buildunits('openUnit',50);
 
-            const Door90Slab_1 = new Door90Slab('Door90Slab',50,0)
-            this.doors.push(Door90Slab_1);
+            //Load doors and add all to array [doors]
+            var doorarray = sources.filter(item => item.parttype === 'door');
+            let doorlist = [];
+            doorarray.forEach((doorarray) => doorlist.push(new Door90Slab(doorarray,50)))
+            
+
+            // const Door90Slab_1 = new Door90Slab('Door90Slab',50,0)
+            // this.doors.push(Door90Slab_1);
             
             //Clone & Add to scene
             var imos2 = imos1.model.clone(true);
@@ -51,7 +57,7 @@ export default class World
 
             const scene1 = this.scene
             const allobj = this.allobj
-            const doors = this.doors
+            const doors = doorlist
             
             //Track buttons
             document.getElementById('OP600').onclick = function() {clicked(this,imos1,scene1,allobj,doors)};
@@ -65,15 +71,15 @@ export default class World
 
 
 
-        function clicked(obj, imos, scene, allobj,doors){
+        function clicked(obj, modelpicked, scene, allobj,doors){
 
             //Get ID
             var id = obj.id
             console.log(id)
-            //Clone & Add to scene
-            var model1 = imos.model.clone(true)
-            scene.add(model1)
 
+            //Clone & Add to scene
+            var model = modelpicked.model.clone(true)
+            scene.add(model)
 
             //Get last object in array (Right)
             const lastElement = allobj[allobj.length - 1]
@@ -85,44 +91,38 @@ export default class World
             const firstbox = new THREE.Box3().setFromObject(firstElement)
             const firstsize = firstbox.getSize(new THREE.Vector3())
     
-            // var target = new THREE.Vector3() // create once an reuse it
-            // lastElement.getWorldPosition(target)
-            // console.log(target)
-    
-    
-    
             //Current model size
-            var bbox = new THREE.Box3().setFromObject(model1)
+            var bbox = new THREE.Box3().setFromObject(model)
             const bboxsize = bbox.getSize(new THREE.Vector3())
             var diff = bboxsize.x - lastsize.x
             const toggle = document.querySelector('#side');
             console.log(toggle.checked);
             
             if (toggle.checked == true) {
-            //To Left
-            model1.position.x = lastElement.position.x 
-            model1.position.x = model1.position.x - lastsize.x - diff
-            allobj.push(model1)
-            
-            //Find door that matches size and chosen type? - Function to update all doors if choice changes
-            var modelwidth = model1.children[0].userData.Length
-            var door = doors.find(door => door.size === modelwidth && door.type == "slab");
-            var doormodel = door.model.clone(true)
-            scene.add(doormodel)
-            doormodel.position.x = model1.position.x
+                //To Left
+                model.position.x = lastElement.position.x 
+                model.position.x = model.position.x - lastsize.x - diff
+                allobj.push(model)
+                
+                //Find door that matches size and chosen type
+                var modelwidth = model.children[0].userData.Length //Get required width
+                var door = doors.find(door => door.size === modelwidth && door.type == "slab"); //Find within doors object array
+                var doormodel = door.model.clone(true) //clone
+                scene.add(doormodel) //Add
+                doormodel.position.x = model.position.x //Position
             }
 
             else if (toggle.checked == false) {
-            //To Right
-            model1.position.x = firstElement.position.x 
-            model1.position.x = model1.position.x + firstsize.x
-            allobj.unshift(model1)
-            
-            //Add chosen door 
-            const door = doors[doors.length - 1]
-            var door1 = door.model.clone(true)
-            scene.add(door1)
-            door1.position.x = model1.position.x
+                //To Right
+                model.position.x = firstElement.position.x 
+                model.position.x = model.position.x + firstsize.x
+                allobj.unshift(model)
+                
+                //Add chosen door 
+                const door = doors[doors.length - 1]
+                var door1 = door.model.clone(true)
+                scene.add(door1)
+                door1.position.x = model.position.x
 
             }
 

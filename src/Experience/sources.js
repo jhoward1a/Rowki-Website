@@ -51,12 +51,22 @@ export default [
         name: 'WDDH90224',
         type: 'gltfModel',
         path: 'models/WDDH90224/WDDH90224.gltf',
-        size: '900'
+        size: '900',
+        parttype: 'unit',
     },
     {
         name: 'Door90Slab',
         type: 'gltfModel',
-        path: 'models/90DSLAB/90DSLAB.gltf'
-    }
+        path: 'models/90DSLAB/90DSLAB.gltf',
+        size: '900',
+        parttype: 'door',
+    },
+    {
+        name: 'Door60Slab',
+        type: 'gltfModel',
+        path: 'models/90DSLAB/90DSLAB.gltf',
+        size: '600',
+        parttype: 'door',
+    },
     
 ]
