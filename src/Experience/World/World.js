@@ -29,9 +29,6 @@ export default class World
             const axesHelper = new THREE.AxesHelper(200)
             this.scene.add(axesHelper)
             
-            
-            //let posleft = 0
-
               
             //Create Model (Loaded without Add - For Each?)
             const imos1 = new IMOS('openUnit',50,0)
@@ -42,41 +39,15 @@ export default class World
             this.scene.add(imos2) 
             var bbox1 = new THREE.Box3().setFromObject(imos2);
             const bboxsize1 = bbox1.getSize( new THREE.Vector3() );
-
-            //var update = (posright  + (bboxsize1.x/2));
-
             this.allobj.push(imos2);
-
-            
-            //console.log(this.allobj)
 
             const scene1 = this.scene
             const allobj = this.allobj
-           
-
-
             
             //Track buttons
             document.getElementById('OP600').onclick = function() {clicked(this,imos1,scene1,allobj)};
             document.getElementById('WDDH90224').onclick = function() {clicked(this,unit90,scene1,allobj)};
 
-            // // //Labels
-            // const tempV = new THREE.Vector3();
-        
-            //  // get the position of the center of the cube
-            // this.allobj[0].model.updateWorldMatrix(true, false);
-            // this.allobj[0].model.getWorldPosition(tempV);
-            // // get the normalized screen coordinate of that position
-            // // x and y will be in the -1 to +1 range with x = -1 being
-            // // on the left and y = -1 being on the bottom
-            // tempV.project(this.experience.camera.instance);
-            // // convert the normalized position to CSS coordinates
-            // const x = (tempV.x *  .5 + .5) * this.experience.canvas.clientWidth;
-            // const y = (tempV.y * -.5 + .5) * this.experience.canvas.clientHeight;
-            
-            // // move the elem to that position
-            // const elem = document.querySelector('#labels');
-            // elem.style.transform = `translate(-50%, -50%) translate(${x}px,${y}px)`;
             
             
             this.environment = new Environment()
@@ -93,29 +64,55 @@ export default class World
             //Clone & Add to scene
             var model1 = imos.model.clone(true)
             scene.add(model1)
-            //Get last object in array (Size & Position)
+
+
+            //Get last object in array (Right)
             const lastElement = allobj[allobj.length - 1]
             const lastbox = new THREE.Box3().setFromObject(lastElement)
             const lastsize = lastbox.getSize(new THREE.Vector3())
-            const lastcenter = lastbox.getCenter(new THREE.Vector3())
+
+            //Get first object in array (Left)
+            const firstElement = allobj[0]
+            const firstbox = new THREE.Box3().setFromObject(firstElement)
+            const firstsize = firstbox.getSize(new THREE.Vector3())
     
-            var target = new THREE.Vector3() // create once an reuse it
-            lastElement.getWorldPosition(target)
-            console.log(target)
+            // var target = new THREE.Vector3() // create once an reuse it
+            // lastElement.getWorldPosition(target)
+            // console.log(target)
     
     
     
-            // //Current model size
-            // var bbox = new THREE.Box3().setFromObject(model1)
-            // const bboxsize = bbox.getSize(new THREE.Vector3())
-            // var diff = bboxsize.x - lastsize.x
+            //Current model size
+            var bbox = new THREE.Box3().setFromObject(model1)
+            const bboxsize = bbox.getSize(new THREE.Vector3())
+            var diff = bboxsize.x - lastsize.x
             // var half = bboxsize.x / 2
             // var move = half + diff
-    
-    
-            model1.position.x = lastElement.position.x + lastsize.x
 
+            const toggle = document.querySelector('#side');
+            console.log(toggle.checked);
+            
+            if (toggle.checked == true) {
+            //To Left
+            console.log("Left")
+            model1.position.x = lastElement.position.x 
+            model1.position.x = model1.position.x - lastsize.x - diff
             allobj.push(model1)
+
+            }
+
+            else if (toggle.checked == false) {
+            //To Right
+            console.log("Right")
+            model1.position.x = firstElement.position.x 
+            model1.position.x = model1.position.x + firstsize.x
+            allobj.unshift(model1)
+            }
+            
+
+            
+
+           
             
         
     }
