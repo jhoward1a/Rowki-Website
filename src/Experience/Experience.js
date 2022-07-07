@@ -56,6 +56,7 @@ export default class Experience
         this.sizes = new Sizes()
         this.time = new Time()
         this.scene = new THREE.Scene()
+        this.scene.background = new THREE.Color( 0xa0a0a0 );
         this.resources = new Resources(sources)
         this.camera = new Camera()
         this.renderer = new Renderer()

@@ -16,8 +16,23 @@ export default class Environment
             this.debugFolder = this.debug.ui.addFolder('environment')
         }
 
-        this.setSunLight()
-        this.setEnvironmentMap()
+        //this.setSunLight()
+        //this.setEnvironmentMap()
+        const hemiLight = new THREE.HemisphereLight( 0xffffff, 0x444444 );
+				hemiLight.position.set( 0, 100, 0 );
+				this.scene.add( hemiLight );
+
+				const dirLight = new THREE.DirectionalLight( 0xffffff );
+				dirLight.position.set( - 0, 40, 50 );
+				dirLight.castShadow = true;
+				dirLight.shadow.camera.top = 50;
+				dirLight.shadow.camera.bottom = - 25;
+				dirLight.shadow.camera.left = - 25;
+				dirLight.shadow.camera.right = 25;
+				dirLight.shadow.camera.near = 0.1;
+				dirLight.shadow.camera.far = 200;
+				dirLight.shadow.mapSize.set( 1024, 1024 );
+				this.scene.add( dirLight );
     }
 
     setSunLight()

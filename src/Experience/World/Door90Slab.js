@@ -14,8 +14,8 @@ export default class Door90Slab
 
         //Variables
         this.scale = scale
-        this.size = 900
-        this.type = "slab"
+        // this.size = 900
+        // this.type = "slab"
         this.name = name
 
         // Debug

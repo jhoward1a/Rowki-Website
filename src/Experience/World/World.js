@@ -44,10 +44,6 @@ export default class World
             let doorlist = [];
             doorarray.forEach((doorarray) => doorlist.push(new Door90Slab(doorarray,50)))
             
-
-            // const Door90Slab_1 = new Door90Slab('Door90Slab',50,0)
-            // this.doors.push(Door90Slab_1);
-            
             //Clone & Add to scene
             var imos2 = imos1.model.clone(true);
             this.scene.add(imos2) 
@@ -106,7 +102,8 @@ export default class World
                 
                 //Find door that matches size and chosen type
                 var modelwidth = model.children[0].userData.Length //Get required width
-                var door = doors.find(door => door.size === modelwidth && door.type == "slab"); //Find within doors object array
+                console.log(modelwidth)
+                var door = doors.find(door => door.model.children[0].userData.Length === modelwidth); //Find within doors object array
                 var doormodel = door.model.clone(true) //clone
                 scene.add(doormodel) //Add
                 doormodel.position.x = model.position.x //Position
@@ -118,11 +115,13 @@ export default class World
                 model.position.x = model.position.x + firstsize.x
                 allobj.unshift(model)
                 
-                //Add chosen door 
-                const door = doors[doors.length - 1]
-                var door1 = door.model.clone(true)
-                scene.add(door1)
-                door1.position.x = model.position.x
+                //Find door that matches size and chosen type
+                var modelwidth = model.children[0].userData.Length //Get required width
+                console.log(modelwidth)
+                var door = doors.find(door => door.model.children[0].userData.Length === modelwidth); //Find within doors object array
+                var doormodel = door.model.clone(true) //clone
+                scene.add(doormodel) //Add
+                doormodel.position.x = model.position.x //Position
 
             }
 

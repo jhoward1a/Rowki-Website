@@ -9,10 +9,15 @@ export default class Floor
         this.scene = this.experience.scene
         this.resources = this.experience.resources
 
-        this.setGeometry()
-        this.setTextures()
-        this.setMaterial()
-        this.setMesh()
+        // this.setGeometry()
+        // this.setTextures()
+        // this.setMaterial()
+        // this.setMesh()
+
+        const mesh = new THREE.Mesh( new THREE.PlaneGeometry( 5000, 5000 ), new THREE.MeshPhongMaterial( { color: 0x9999999, depthWrite: false } ) );
+		mesh.rotation.x = - Math.PI / 2;
+		mesh.receiveShadow = true;
+		this.scene.add( mesh );
     }
 
     setGeometry()
