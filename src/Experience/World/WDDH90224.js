@@ -11,11 +11,22 @@ export default class WDDH90224
         this.time = this.experience.time
         this.debug = this.experience.debug
 
+        this.size = 900
 
-        //Variables
+        //Get Sources
+        const test = this.experience.resources.sources
+        //console.log(test)
+
+        var doorsize = test.find(doorsize => doorsize.size === '900');
+        console.log("Found: " + doorsize.size)
+
+        //Add info to model
         this.scale = scale
         this.posx = posx
         this.name = name
+        
+        this.doorsize = doorsize
+
 
         // Debug
         if(this.debug.active)

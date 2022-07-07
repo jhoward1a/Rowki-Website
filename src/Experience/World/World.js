@@ -34,8 +34,10 @@ export default class World
             
               
             //Create Model (Loaded without Add - For Each?)
-            const imos1 = new IMOS('openUnit',50,0);
-            const unit90 = new WDDH90224('WDDH90224',50,0);
+         
+
+            const unit90 = new buildunits('WDDH90224',50);
+            const imos1 = new buildunits('openUnit',50);
 
             const Door90Slab_1 = new Door90Slab('Door90Slab',50,0)
             this.doors.push(Door90Slab_1);
@@ -93,9 +95,6 @@ export default class World
             var bbox = new THREE.Box3().setFromObject(model1)
             const bboxsize = bbox.getSize(new THREE.Vector3())
             var diff = bboxsize.x - lastsize.x
-            // var half = bboxsize.x / 2
-            // var move = half + diff
-
             const toggle = document.querySelector('#side');
             console.log(toggle.checked);
             
@@ -106,17 +105,11 @@ export default class World
             allobj.push(model1)
             
             //Find door that matches size and chosen type? - Function to update all doors if choice changes
-            const door = doors[doors.length - 1]
-            //Door in array that is 44.999998807907126 in X
-            var door1 = door.model.clone(true)
-            var doorbox = new THREE.Box3().setFromObject(door1)
-            const doorsize = doorbox.getSize(new THREE.Vector3())
-            scene.add(door1)
-            console.log(door)
-            //44.999998807907126
-            door1.position.x = model1.position.x
-
-
+            var modelwidth = model1.children[0].userData.Length
+            var door = doors.find(door => door.size === modelwidth && door.type == "slab");
+            var doormodel = door.model.clone(true)
+            scene.add(doormodel)
+            doormodel.position.x = model1.position.x
             }
 
             else if (toggle.checked == false) {
