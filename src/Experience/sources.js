@@ -64,7 +64,7 @@ export default [
     {
         name: 'Door60Slab',
         type: 'gltfModel',
-        path: 'models/90DSLAB/90DSLAB.gltf',
+        path: 'models/60DSLAB/Door60Slab.gltf',
         size: '600',
         parttype: 'door',
     },

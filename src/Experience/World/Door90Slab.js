@@ -14,9 +14,10 @@ export default class Door90Slab
 
         //Variables
         this.scale = scale
-        // this.size = 900
-        // this.type = "slab"
         this.name = name
+
+        //Get Sources (All loaded)
+        const sources = this.experience.resources.sources
 
         // Debug
         if(this.debug.active)
@@ -25,7 +26,14 @@ export default class Door90Slab
         }
 
 
-        this.resource = this.resources.items.Door90Slab
+        //Get model details from sources
+        var model = sources.find(modelname => modelname.name === this.name);
+
+        //this.resource = this.resources.items.WDDH90224
+
+        //Load model into resources
+        const { [model.name]: modelobj } = this.resources.items;
+        this.resource = modelobj
         
         // Resource
         this.setModel()

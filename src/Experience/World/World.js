@@ -42,7 +42,7 @@ export default class World
             //Load doors and add all to array [doors]
             var doorarray = sources.filter(item => item.parttype === 'door');
             let doorlist = [];
-            doorarray.forEach((doorarray) => doorlist.push(new Door90Slab(doorarray,50)))
+            doorarray.forEach((doorarray) => doorlist.push(new Door90Slab(doorarray.name,50)))
             
             //Clone & Add to scene
             var imos2 = imos1.model.clone(true);
@@ -103,6 +103,7 @@ export default class World
                 //Find door that matches size and chosen type
                 var modelwidth = model.children[0].userData.Length //Get required width
                 console.log(modelwidth)
+                console.log(doors)
                 var door = doors.find(door => door.model.children[0].userData.Length === modelwidth); //Find within doors object array
                 var doormodel = door.model.clone(true) //clone
                 scene.add(doormodel) //Add
